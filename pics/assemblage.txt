@@ -1,0 +1,25 @@
+@startuml
+interface t1
+interface t2
+interface t3
+
+actor Human
+[Auto] as auto
+[Roue] as roue
+[Frein] as frein
+[MC] as mc
+'[Regulator] as reg
+auto "roue"#-left- t1
+t1 -left-#"veh" roue
+
+frein "roue"#-right-t2
+t2-right-#"frein" roue
+
+
+frein "MC"#-left-t3
+t3-left-#"hyd" mc
+
+
+Human-right->"force" mc: 180N
+'reg --> t1
+@enduml

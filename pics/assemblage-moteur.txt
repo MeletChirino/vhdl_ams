@@ -1,0 +1,36 @@
+@startuml
+interface t1
+interface t2
+interface t3
+interface t4
+interface motor
+
+actor Human
+[Auto] as auto
+[Roue] as roue
+[Frein] as frein
+[MC] as mc
+[Regulator] as reg
+[ABS] as abs
+auto "roue"#-left- t1
+t1 -left-#"veh" roue
+
+frein "roue"#-right-t2
+t2-right-#"frein" roue
+
+motor -down-> t2: torque
+
+frein "MC"#-left-t3
+reg "OUT_P"#-right- t3
+
+t4 -left-#"hyd" mc
+reg "IN_P"#-left- t4
+
+
+Human -right->"force" mc: 180N
+
+t1 --#"veh" abs
+t2 --#"roue" abs
+t4 --#"hydro" abs
+abs "vmcde"#--#"V5" reg
+@enduml
